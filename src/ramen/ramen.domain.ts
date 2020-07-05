@@ -1,23 +1,23 @@
 export class Ramen {
   private menma = false;
   private nori = false;
-  private size: SizeMappings = SizeMappings.nami;
+  private size: Size = Size.nami;
   constructor(builder: IRamenBuilder) {
     this.menma = builder.menma;
     this.nori = builder.nori;
     this.size = builder.size;
   }
 }
-export enum SizeMappings {
-  nami = 'nami',
-  oomori = 'oomori',
+export enum Size {
+  nami,
+  oomori,
 }
 export interface IRamenBuilder {
   menma: boolean;
   nori: boolean;
-  size: SizeMappings;
+  size: Size;
   setMenma(): IRamenBuilder;
   setNori(): IRamenBuilder;
-  changeSize(size: SizeMappings): IRamenBuilder;
+  changeSize(size: Size): IRamenBuilder;
   build(): Ramen;
 }

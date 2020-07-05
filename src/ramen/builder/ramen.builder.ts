@@ -1,9 +1,9 @@
-import { Ramen, IRamenBuilder, SizeMappings } from '../ramen.domain';
+import { Ramen, IRamenBuilder, Size } from '../ramen.domain';
 
 export class RamenBuilder implements IRamenBuilder {
   menma = false;
   nori = false;
-  size: SizeMappings = SizeMappings.nami;
+  size: Size = Size.nami;
   constructor() {}
   setMenma = (): IRamenBuilder => {
     this.menma = true;
@@ -13,9 +13,12 @@ export class RamenBuilder implements IRamenBuilder {
     this.nori = true;
     return this;
   }
-  changeSize(size: SizeMappings) {
+  changeSize(size: Size) {
     this.size = size;
     return this;
   }
   build = (): Ramen => new Ramen(this);
+}
+export interface IRamenFactory {
+  createRamenBuilder(): RamenBuilder;
 }

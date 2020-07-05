@@ -1,5 +1,5 @@
 import { RamenBuilder } from './ramen.builder';
-import { SizeMappings } from '../ramen.domain';
+import { Size } from '../ramen.domain';
 
 describe('RamenBuilder', () => {
   let builder: RamenBuilder;
@@ -7,11 +7,11 @@ describe('RamenBuilder', () => {
     builder = new RamenBuilder();
   });
   it('size', () => {
-    const ramen = builder.changeSize(SizeMappings.oomori).build();
+    const ramen = builder.changeSize(Size.oomori).build();
     expect(ramen).toBeDefined();
   });
   it('size', () => {
-    const ramen = builder.changeSize(SizeMappings.oomori).build();
+    const ramen = builder.changeSize(Size.oomori).build();
     expect(ramen).toBeDefined();
   });
 });

@@ -12,7 +12,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build containers
-        run: docker-compose build
+        run: |
+          docker-compose build
+          docker-compose run --rm app "yarn"
 
       - name: Test
-        run: docker-compose run --rm app "yarn && yarn test:internal"
+        run: docker-compose run --rm app "yarn test"

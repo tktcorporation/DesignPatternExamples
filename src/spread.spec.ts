@@ -1,41 +1,20 @@
 describe('spread test', () => {
+  type PossiblyUndefined = {
+    possiblyUndefinedId?: number;
+  };
+  type User =
+    | {
+        id: number;
+        name: string;
+      }
+    | {
+        name: string;
+      };
   describe('normal', () => {
-    function createUser(
+    const createUser = (
       name: string,
-    ): {
-      name: string;
-    };
-    function createUser(
-      name: string,
-      possiblyUndefined: {
-        possiblyUndefinedId: number;
-      },
-    ): {
-      id: number;
-      name: string;
-    };
-    function createUser(
-      name: string,
-      possiblyUndefined: {
-        possiblyUndefinedId?: number;
-      },
-    ): {
-      id: number;
-      name: string;
-    };
-    function createUser(
-      name: string,
-      possiblyUndefined?: {
-        possiblyUndefinedId?: number;
-      },
-    ):
-      | {
-          name: string;
-        }
-      | {
-          id: number;
-          name: string;
-        } {
+      possiblyUndefined?: PossiblyUndefined,
+    ): User => {
       if (typeof possiblyUndefined?.possiblyUndefinedId === 'number')
         return {
           name,
@@ -44,12 +23,11 @@ describe('spread test', () => {
       return {
         name,
       };
-    }
+    };
     it("'name', {possiblyUndefinedId: 1000}", () => {
       const user = createUser('name', {
         possiblyUndefinedId: 1000,
       });
-      expect(user.id).toBe(1000);
       expect(user).toStrictEqual({
         name: 'name',
         id: 1000,
@@ -59,7 +37,6 @@ describe('spread test', () => {
       const user = createUser('name', {
         possiblyUndefinedId: -1000,
       });
-      expect(user.id).toBe(-1000);
       expect(user).toStrictEqual({
         name: 'name',
         id: -1000,
@@ -69,7 +46,6 @@ describe('spread test', () => {
       const user = createUser('name', {
         possiblyUndefinedId: 0,
       });
-      expect(user.id).toBe(0);
       expect(user).toStrictEqual({
         id: 0,
         name: 'name',
@@ -97,48 +73,19 @@ describe('spread test', () => {
     });
   });
   describe('spread', () => {
-    function createUser(
+    const createUser = (
       name: string,
-      possiblyUndefined: {
-        possiblyUndefinedId: number;
-      },
-    ): {
-      id: number;
-      name: string;
-    };
-    function createUser(
-      name: string,
-      possiblyUndefined?: {
-        possiblyUndefinedId?: undefined;
-      },
-    ): {
-      name: string;
-    };
-    function createUser(
-      name: string,
-      possiblyUndefined?: {
-        possiblyUndefinedId?: number;
-      },
-    ):
-      | {
-          id: number;
-          name: string;
-        }
-      | {
-          name: string;
-        } {
-      return {
-        name,
-        ...(typeof possiblyUndefined?.possiblyUndefinedId === 'number' && {
-          id: possiblyUndefined.possiblyUndefinedId,
-        }),
-      };
-    }
+      possiblyUndefined?: PossiblyUndefined,
+    ): User => ({
+      name,
+      ...(typeof possiblyUndefined?.possiblyUndefinedId === 'number' && {
+        id: possiblyUndefined.possiblyUndefinedId,
+      }),
+    });
     it("'name', {possiblyUndefinedId: 1000}", () => {
       const user = createUser('name', {
         possiblyUndefinedId: 1000,
       });
-      expect(user.id).toBe(1000);
       expect(user).toStrictEqual({
         name: 'name',
         id: 1000,
@@ -148,7 +95,6 @@ describe('spread test', () => {
       const user = createUser('name', {
         possiblyUndefinedId: -1000,
       });
-      expect(user.id).toBe(-1000);
       expect(user).toStrictEqual({
         name: 'name',
         id: -1000,
@@ -158,7 +104,6 @@ describe('spread test', () => {
       const user = createUser('name', {
         possiblyUndefinedId: 0,
       });
-      expect(user.id).toBe(0);
       expect(user).toStrictEqual({
         id: 0,
         name: 'name',

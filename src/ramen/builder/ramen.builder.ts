@@ -1,4 +1,4 @@
-import { Ramen, IRamenBuilder, SizeMappings } from './ramen.domain';
+import { Ramen, IRamenBuilder, SizeMappings } from '../ramen.domain';
 
 export class RamenBuilder implements IRamenBuilder {
   menma = false;
@@ -9,13 +9,13 @@ export class RamenBuilder implements IRamenBuilder {
     this.menma = true;
     return this;
   };
-  setNori = (): IRamenBuilder => {
+  setNori() {
     this.nori = true;
     return this;
-  };
-  changeSize = (size: SizeMappings): IRamenBuilder => {
+  }
+  changeSize(size: SizeMappings) {
     this.size = size;
     return this;
-  };
+  }
   build = (): Ramen => new Ramen(this);
 }

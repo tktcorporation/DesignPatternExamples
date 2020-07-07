@@ -4,7 +4,7 @@ export class RamenBuilder implements IRamenBuilder {
   menma = false;
   nori = false;
   size: Size = Size.nami;
-  constructor() {}
+
   setMenma = (): IRamenBuilder => {
     this.menma = true;
     return this;

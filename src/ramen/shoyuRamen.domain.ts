@@ -1,5 +1,9 @@
 import { Ramen, IRamenBuilder } from './ramen.domain';
-
+export enum Heavily {
+  heavy = 'koime',
+  normal = 'hutu',
+  light = 'usume',
+}
 export class ShoyuRamen extends Ramen {
   heavily: Heavily = Heavily.normal;
   constructor(builder: IShoyuRamenBuilder) {
@@ -7,11 +11,7 @@ export class ShoyuRamen extends Ramen {
     this.heavily = builder.heavily;
   }
 }
-export enum Heavily {
-  heavy = 'koime',
-  normal = 'hutu',
-  light = 'usume',
-}
+
 export interface IShoyuRamenBuilder extends IRamenBuilder {
   heavily: Heavily;
   changeHeavily(heavily: Heavily): IShoyuRamenBuilder;

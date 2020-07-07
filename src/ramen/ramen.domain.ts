@@ -1,3 +1,8 @@
+export enum Size {
+  nami,
+  oomori,
+}
+
 export class Ramen {
   private menma = false;
   private nori = false;
@@ -8,10 +13,7 @@ export class Ramen {
     this.size = builder.size;
   }
 }
-export enum Size {
-  nami,
-  oomori,
-}
+
 export interface IRamenBuilder {
   menma: boolean;
   nori: boolean;

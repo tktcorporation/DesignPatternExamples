@@ -3,7 +3,7 @@ import { RamenBuilder } from './ramen.builder';
 
 export class ShioRamenBuilder extends RamenBuilder
   implements IShioRamenBuilder {
-  goma: boolean = false;
+  goma = false;
   constructor() {
     super();
   }
